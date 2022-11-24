@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var appState : EssenState = EssenState()
+    @ObservedObject var authState : AuthState = AuthState()
+    @ObservedObject var mapSwipeController : MapSwipeController =  MapSwipeController()
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        DiscoverView().environmentObject(authState).environmentObject(appState).environmentObject(mapSwipeController)
     }
 }
 

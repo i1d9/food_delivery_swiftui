@@ -21,6 +21,13 @@
 		F28261D9292F2BC700476B3F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28261D8292F2BC700476B3F /* ProfileView.swift */; };
 		F28261DB292F2BD700476B3F /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28261DA292F2BD700476B3F /* OrderView.swift */; };
 		F28261DD292F2C0400476B3F /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28261DC292F2C0400476B3F /* FavouriteView.swift */; };
+		F28261DF292F2C5600476B3F /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28261DE292F2C5600476B3F /* DiscoverView.swift */; };
+		F28261E1292F385A00476B3F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28261E0292F385900476B3F /* TestView.swift */; };
+		F28261FF292F682900476B3F /* MapSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28261FE292F682900476B3F /* MapSwipeController.swift */; };
+		F2826201292F690A00476B3F /* MapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2826200292F690A00476B3F /* MapCard.swift */; };
+		F2826203292F6E4500476B3F /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2826202292F6E4500476B3F /* Carousel.swift */; };
+		F2826205292F726100476B3F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2826204292F726100476B3F /* App.swift */; };
+		F2826207292F73A900476B3F /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2826206292F73A900476B3F /* Canvas.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +46,13 @@
 		F28261D8292F2BC700476B3F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F28261DA292F2BD700476B3F /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		F28261DC292F2C0400476B3F /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
+		F28261DE292F2C5600476B3F /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		F28261E0292F385900476B3F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		F28261FE292F682900476B3F /* MapSwipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSwipeController.swift; sourceTree = "<group>"; };
+		F2826200292F690A00476B3F /* MapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCard.swift; sourceTree = "<group>"; };
+		F2826202292F6E4500476B3F /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
+		F2826204292F726100476B3F /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		F2826206292F73A900476B3F /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +108,8 @@
 			children = (
 				F28261C9292F297100476B3F /* Business.swift */,
 				F28261CB292F298400476B3F /* Item.swift */,
+				F28261FE292F682900476B3F /* MapSwipeController.swift */,
+				F2826204292F726100476B3F /* App.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -102,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				F28261CE292F2B7B00476B3F /* BusinessView.swift */,
+				F2826206292F73A900476B3F /* Canvas.swift */,
 				F28261D0292F2B8500476B3F /* MenuView.swift */,
 				F28261D2292F2B9200476B3F /* ItemView.swift */,
 				F28261D4292F2B9E00476B3F /* CartView.swift */,
@@ -109,6 +126,10 @@
 				F28261D8292F2BC700476B3F /* ProfileView.swift */,
 				F28261DA292F2BD700476B3F /* OrderView.swift */,
 				F28261DC292F2C0400476B3F /* FavouriteView.swift */,
+				F28261DE292F2C5600476B3F /* DiscoverView.swift */,
+				F28261E0292F385900476B3F /* TestView.swift */,
+				F2826200292F690A00476B3F /* MapCard.swift */,
+				F2826202292F6E4500476B3F /* Carousel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,10 +204,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2826201292F690A00476B3F /* MapCard.swift in Sources */,
+				F2826203292F6E4500476B3F /* Carousel.swift in Sources */,
+				F28261E1292F385A00476B3F /* TestView.swift in Sources */,
+				F28261DF292F2C5600476B3F /* DiscoverView.swift in Sources */,
 				F28261CC292F298400476B3F /* Item.swift in Sources */,
 				F28261D1292F2B8500476B3F /* MenuView.swift in Sources */,
 				F28261D9292F2BC700476B3F /* ProfileView.swift in Sources */,
+				F2826207292F73A900476B3F /* Canvas.swift in Sources */,
+				F28261FF292F682900476B3F /* MapSwipeController.swift in Sources */,
 				F28261CF292F2B7B00476B3F /* BusinessView.swift in Sources */,
+				F2826205292F726100476B3F /* App.swift in Sources */,
 				F28261CA292F297100476B3F /* Business.swift in Sources */,
 				F28261D3292F2B9200476B3F /* ItemView.swift in Sources */,
 				F28261BD292F292B00476B3F /* ContentView.swift in Sources */,

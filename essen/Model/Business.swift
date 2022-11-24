@@ -7,20 +7,29 @@
 
 import Foundation
 
+import CoreLocation
+
 class Business : Identifiable, ObservableObject{
     
     @Published var name : String
     @Published var location : String
     @Published var category : String
-    @Published var items : [Item]
-    var id: UUID
+    @Published var items : [Itemm]
     
-    init(name: String, location: String, category: String, items: [Item]) {
+    @Published var coordinate: CLLocationCoordinate2D
+    
+    var id: Int
+    
+    init(id: Int,name: String, location: String, category: String, items: [Itemm], lat : Double, lng: Double) {
         self.name = name
         self.location = location
         self.category = category
         self.items = items
-        self.id = UUID()
+        self.id = id
+        
+        self.coordinate = CLLocationCoordinate2D(
+                   latitude: lat,
+                   longitude: lng)
     }
     
     

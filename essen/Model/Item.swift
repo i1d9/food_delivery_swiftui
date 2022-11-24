@@ -8,7 +8,7 @@
 import Foundation
 
 
-class Item : ObservableObject, Identifiable{
+class Itemm : ObservableObject, Identifiable{
     
     @Published var name : String
     @Published var img : String
