@@ -15,6 +15,26 @@ struct ContentView: View {
     
     
     var body: some View {
+        
+        
+        TabView{
+            
+            BusinessView().tabItem {
+                Image(systemName: "house")
+            }
+            
+            SearchView().tabItem {
+                Image(systemName: "magnifyingglass")
+            }
+            FavouriteView().tabItem {
+                Image(systemName: "heart")
+            }
+            
+            ProfileView().tabItem {
+                Image(systemName: "person")
+            }
+            
+        }
         DiscoverView().environmentObject(authState).environmentObject(appState).environmentObject(mapSwipeController)
     }
 }

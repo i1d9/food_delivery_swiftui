@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct essenApp: App {
+    
+    @ObservedObject var appState : EssenState = EssenState()
+    @ObservedObject var authState : AuthState = AuthState()
+    @ObservedObject var mapSwipeController : MapSwipeController =  MapSwipeController()
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(authState).environmentObject(appState).environmentObject(mapSwipeController)
         }
     }
 }

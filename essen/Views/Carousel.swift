@@ -83,6 +83,7 @@ struct Carousel<MapCards : View> : View {
 
             if (value.translation.width > 50) {
                 
+                
                 let businessIndex = self.mapSwipeController.businessIndex - 1
                 let business = self.essenState.businesses[businessIndex]
                 

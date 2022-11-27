@@ -9,7 +9,43 @@ import SwiftUI
 
 struct FavouriteView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView{
+            VStack(alignment: .leading) {
+                Text("Favourite food").font(.system(size: 32)).fontWeight(Font.Weight.heavy).padding(.bottom, 16.0)
+                Text("See the list of likes of your food to order it press on the 'love icon to remove it'")
+                    .foregroundColor(Color(hue: 1.0, saturation: 0.019, brightness: 0.44))
+                    .padding(.bottom, 8.0)
+            }.padding(4)
+            
+            ForEach(1...10, id: \.self) {_ in
+                   
+                HStack(alignment: .top){
+                    
+                    Image("burger").resizable().scaledToFit().cornerRadius(10)
+                    VStack(alignment: .leading){
+                        Text("Food Name").font(.system(size: 24))
+                        HStack {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(Color.orange)
+                            Text("4.5")
+                        }
+                        
+
+                    }
+                    Spacer()
+                    Image(systemName: "heart.fill").foregroundColor(Color.red)
+                }.padding(16).frame(width: UIScreen.main.bounds.width - 10, height: 120) .foregroundColor(.black)
+                    .shadow(radius: 16)
+                    .background(.white)
+                    .cornerRadius(8)
+                
+                    
+
+            }
+            
+            
+            
+        }.background(Color(hue: 1.0, saturation: 0.0, brightness: 0.984))
     }
 }
 
