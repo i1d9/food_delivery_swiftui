@@ -11,119 +11,136 @@ import MapKit
 
 struct BusinessView: View {
     
+    @ObservedObject var appState : EssenState = EssenState()
+    @ObservedObject var authState : AuthState = AuthState()
+    @ObservedObject var mapSwipeController : MapSwipeController =  MapSwipeController()
+    
+    
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(
         latitude: -1.2626889615093801,
         longitude: 36.818452689877205), span: MKCoordinateSpan(latitudeDelta: 0.01628962146283497, longitudeDelta: 0.01592863624435381))
     
     var body: some View {
-        ScrollView{
-            
-            VStack( ) {
-                HStack{
-                    Image(systemName: "blinds.horizontal.open")
-                    Spacer()
-                    VStack{
-                        Text("Location")
-                        HStack{
-                            Image(systemName: "location").foregroundColor(.blue)
-                            Text("Nairobi Kenya")
+        NavigationView {
+            ScrollView{
+                
+                VStack( ) {
+                    HStack{
+                        Image(systemName: "blinds.horizontal.open")
+                        Spacer()
+                        VStack{
+                            
+                            HStack{
+                                Image(systemName: "location").foregroundColor(.blue)
+                                Text("Nairobi Kenya")
+                            }
+                            
                         }
+                        Spacer()
                         
-                    }
-                    Spacer()
+                        NavigationLink {
+                            
+                            CartView()
+                            
+                        } label: {
+                            Image(systemName: "cart")
+                        }
+                    }.padding(8)
                     
-                    Image(systemName: "cart")
-                }.padding(8)
-                
-                VStack(alignment: .leading) {
-                    Text("Hello Ian").font(.headline)
-                    Text("You have 3 items in your cart")
-                }.background(.red).padding(8)
-                
+                    VStack(alignment: .leading) {
+                        Text("Hello Ian").font(.headline)
+                        Text("You have 3 items in your cart")
+                    }.background(.red).padding(8)
+                    
 
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 8) {
+                                
+                                Button(action: {}, label: {HStack {
+                                    Image(systemName: "fork.knife")
+                                    Text("Fast Food").padding(8)
+                                }}).foregroundColor(.white).background(.orange).cornerRadius(24).padding(8)
+                                
+                                
+                                Button(action: {}, label: {HStack {
+                                    Image(systemName: "wineglass")
+                                    Text("Drinks ").padding(8).fontWeight(.medium)
+                                }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
+                                
+                                Button(action: {}, label: {HStack {
+                                    HStack {
+                                        Image(systemName: "leaf")
+                                       
+                                        Text("Vegan").padding(8).fontWeight(.medium)
+                                    }
+                                }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
+                              
+                                
+                                Button(action: {}, label: {HStack {
+                                    Image(systemName: "takeoutbag.and.cup.and.straw")
+                                    Text(" Snacks").padding(8).fontWeight(.medium)
+                                }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
+                                
+                                
+                                
+                                Button(action: {}, label: {HStack {
+                                    Image(systemName: "fish")
+                                    Text(" Sea Food").padding(8).fontWeight(.medium)
+                                }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
+                                
+                            }
+                        }
+                    
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
                             
-                            Button(action: {}, label: {HStack {
-                                Image(systemName: "fork.knife")
-                                Text("Fast Food").padding(8)
-                            }}).foregroundColor(.white).background(.orange).cornerRadius(24).padding(8)
+                          
+                            FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
                             
+                        
                             
-                            Button(action: {}, label: {HStack {
-                                Image(systemName: "wineglass")
-                                Text("Drinks ").padding(8).fontWeight(.medium)
-                            }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
-                            
-                            Button(action: {}, label: {HStack {
-                                HStack {
-                                    Image(systemName: "leaf")
-                                   
-                                    Text("Vegan").padding(8).fontWeight(.medium)
-                                }
-                            }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
+                              FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
+                              
                           
                             
-                            Button(action: {}, label: {HStack {
-                                Image(systemName: "takeoutbag.and.cup.and.straw")
-                                Text(" Snacks").padding(8).fontWeight(.medium)
-                            }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
+                            
+                              FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
+                              
+                          
+                            
+                              FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
+                              
+                          
+                           
                             
                             
                             
-                            Button(action: {}, label: {HStack {
-                                Image(systemName: "fish")
-                                Text(" Sea Food").padding(8).fontWeight(.medium)
-                            }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
-                            
-                        }
+                        }.padding(8)
                     }
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        
-                      
-                        FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
-                        
                     
-                        
-                          FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
-                          
-                      
-                        
-                        
-                          FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
-                          
-                      
-                        
-                          FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
-                          
-                      
-                       
-                        
-                        
-                        
+                    
+                    HStack {
+                        Text("Near You")
+                        Spacer()
+                        NavigationLink {
+                           DiscoverView().environmentObject(authState).environmentObject(appState).environmentObject(mapSwipeController)
+                        }label: {
+                            Text("See map")
+                        }
                     }.padding(8)
+                    
+                    Map(coordinateRegion: $region
+                    ).frame(height: 240)
+                    
+                    
+                    
                 }
                 
                 
-                HStack {
-                    Text("Near You")
-                    Spacer()
-                    Text("See map")
-                }.padding(8)
-                
-                Map(coordinateRegion: $region
-                ).frame(height: 240)
-                
+
                 
                 
             }
-            
-            
-
-            
-            
         }
     }
 }
