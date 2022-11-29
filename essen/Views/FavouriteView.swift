@@ -35,13 +35,13 @@ struct FavouriteView: View {
                     Spacer()
                     Image(systemName: "heart.fill").foregroundColor(Color.red)
                 }.padding(16).frame(width: UIScreen.main.bounds.width - 10, height: 120) .foregroundColor(.black)
-                    .shadow(radius: 16)
                     .background(.white)
                     .cornerRadius(8)
                 
                     
 
-            }
+            }.shadow(color: Color.black.opacity(0.2), radius: 3, x: 1, y: 2)
+                .shadow(color: Color.pink.opacity(0.3), radius: 2, x: 3, y: 4)
             
             
             

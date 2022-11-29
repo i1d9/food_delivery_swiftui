@@ -9,10 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var appState : EssenState = EssenState()
-    @ObservedObject var authState : AuthState = AuthState()
-    @ObservedObject var mapSwipeController : MapSwipeController =  MapSwipeController()
-    
+  
     
     var body: some View {
         
@@ -34,8 +31,9 @@ struct ContentView: View {
                 Image(systemName: "person")
             }
             
-        }
-        DiscoverView().environmentObject(authState).environmentObject(appState).environmentObject(mapSwipeController)
+        }.accentColor(.orange)
+
+        
     }
 }
 

@@ -12,108 +12,165 @@ struct TestView: View {
     
     
     
-    private let colors: [Color] = [.red, .green, .blue]
-  
-     @State private var names: [String] = ["Red", "Green", "Blue"]
-    @State  var scrollOffset: CGFloat
-    @State  var dragOffset: CGFloat
-    @State var currentColor: Int = 0
-      
-      var items: Int = 3
-      var itemWidth: CGFloat  = UIScreen.main.bounds.size.width - 10
-      var itemSpacing: CGFloat = 30
 
-    init() {
-         
-           // Calculate Total Content Width
-           let contentWidth: CGFloat = CGFloat(items) * itemWidth + CGFloat(items - 1) * itemSpacing
-           let screenWidth = UIScreen.main.bounds.width
-           
-           // Set Initial Offset to first Item
-           let initialOffset = (contentWidth/2.0) - (screenWidth/2.0) + ((screenWidth - itemWidth) / 2.0)
-           
-           self._scrollOffset = State(initialValue: initialOffset)
-           self._dragOffset = State(initialValue: 0)
-       }
   
     var body: some View {
-      
         VStack {
-            Text(names[currentColor])
-            HStack(alignment: .center, spacing: 30){
-                
-                ForEach(colors, id: \.self){ color in
+                    EventHeader()
+                    ImagePlaceholder().layoutPriority(-1).frame(minHeight: 100)
+                .frame(minHeight: 100)
                     
-                    color.frame(width: itemWidth, height: 100)
-                }
-            }.offset(x: scrollOffset + dragOffset, y: 0)
-                .gesture(DragGesture()
-                    .onChanged({ event in
-                        dragOffset = event.translation.width
-                    })
-                    .onEnded({ event in
-                        
-                        
-                        
-                
-                        names = names.reversed()
-                        
-                        
-                        // Scroll to where user dragged
-                        scrollOffset += event.translation.width
-                        dragOffset = 0
-                        
-                        // Now calculate which item to snap to
-                        let contentWidth: CGFloat = CGFloat(items) * itemWidth + CGFloat(items - 1) * itemSpacing
-                        let screenWidth = UIScreen.main.bounds.width
-                        
-                        // Center position of current offset
-                        let center = scrollOffset + (screenWidth / 2.0) + (contentWidth / 2.0)
-                        
-                        // Calculate which item we are closest to using the defined size
-                        var index = (center - (screenWidth / 2.0)) / (itemWidth + itemSpacing)
-                      
-                        
-                        // Should we stay at current index or are we closer to the next item...
-                        if index.remainder(dividingBy: 1) > 0.5 {
-                            index += 1
-                            
+            Text(makeDescription()).layoutPriority(1)
+                    Spacer()
+                    EventInfoList().fixedSize(horizontal: false, vertical: true)
+                }.padding()
+      
+    }
+}
 
-                        } else {
-                            index = CGFloat(Int(index))
-                            currentColor = Int(index)
-                            
+private extension TestView {
+    func makeDescription() -> String {
+        String(repeating: "This is a description ", count: 50)
+    }
+}
 
-                          
-                        }
-                        
-                        // Protect from scrolling out of bounds
-                        index = min(index, CGFloat(items) - 1)
-                        index = max(index, 0)
-                        
-                     
-                        
-                        
-                        // Set final offset (snapping to item)
-                        let newOffset = index * itemWidth + (index - 1) * itemSpacing - (contentWidth / 2.0) + (screenWidth / 2.0) - ((screenWidth - itemWidth) / 2.0) + itemSpacing
-                        
-                        // Animate snapping
-                        withAnimation {
-                            scrollOffset = newOffset
-                        }
-                        
-                    })
-            )
+struct ImagePlaceholder: View {
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10).stroke()
+            Text("Image placeholder")
         }
     }
 }
 
+struct EventHeader: View{
+    var body: some View{
+        HStack(spacing: 15) {
+                    CalendarView()
+                    VStack(alignment: .leading) {
+                        Text("Event title").font(.title)
+                        Text("Location")
+                    }
+                    Spacer()
+                }
+    }
+}
 
 
+struct CalendarView: View {
+    
+    var eventIsVerified = true
+
+    var body: some View {
+        Image(systemName: "calendar")
+            .resizable()
+            .frame(width: 50, height: 50)
+            .padding()
+            .background(Color.red)
+            .cornerRadius(10)
+            .foregroundColor(.white)
+            .addVerifiedBadge(eventIsVerified)
+    }
+}
 
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
         TestView()
+    }
+}
+
+struct EventInfoBadge: View {
+    var iconName: String
+    var text: String
+
+    var body: some View {
+        VStack {
+            Image(systemName: iconName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 25, height: 25)
+            Text(text)
+                .frame(maxWidth: .infinity)
+                .multilineTextAlignment(.center)
+        }
+        .padding(.vertical, 10)
+        .padding(.horizontal, 5)
+    }
+}
+
+struct HeightSyncedRow<Content: View>: View {
+    private let content: Content
+    @State private var childHeight: CGFloat?
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+        HStack {
+            content.syncingHeightIfLarger(than: $childHeight)
+                   .frame(height: childHeight)
+                   .background(Color.red)
+        }
+    }
+}
+
+private struct HeightPreferenceKey: PreferenceKey {
+    static let defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat,
+                       nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+struct EventInfoList: View {
+    var body: some View {
+        HStack {
+            EventInfoBadge(
+                iconName: "video.circle.fill",
+                text: "Video call available"
+            )
+            EventInfoBadge(
+                iconName: "doc.text.fill",
+                text: "Files are attached"
+            )
+            EventInfoBadge(
+                iconName: "person.crop.circle.badge.plus",
+                text: "Invites enabled, 5 people maximum"
+            )
+        }
+    }
+}
+
+extension View {
+    func addVerifiedBadge(_ isVerified: Bool) -> some View {
+        ZStack(alignment: .topTrailing) {
+            self
+
+            if isVerified {
+                Image(systemName: "checkmark.circle.fill")
+                    .offset(x: 3, y: -3)
+            }
+        }
+    }
+}
+
+
+extension View {
+    func syncingHeightIfLarger(than height: Binding<CGFloat?>) -> some View {
+        background(GeometryReader { proxy in
+            // We have to attach our preference assignment to
+            // some form of view, so we just use a clear color
+            // here to make that view completely transparent:
+            Color.clear.preference(
+                key: HeightPreferenceKey.self,
+                value: proxy.size.height
+            )
+        })
+        .onPreferenceChange(HeightPreferenceKey.self) {
+            height.wrappedValue = max(height.wrappedValue ?? 0, $0)
+        }
     }
 }

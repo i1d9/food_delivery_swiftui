@@ -31,8 +31,8 @@ struct BusinessView: View {
                         VStack{
                             
                             HStack{
-                                Image(systemName: "location").foregroundColor(.blue)
-                                Text("Nairobi Kenya")
+                                Image(systemName: "location").foregroundColor(.black)
+                                Text("Nairobi, Kenya")
                             }
                             
                         }
@@ -47,47 +47,40 @@ struct BusinessView: View {
                         }
                     }.padding(8)
                     
-                    VStack(alignment: .leading) {
-                        Text("Hello Ian").font(.headline)
-                        Text("You have 3 items in your cart")
-                    }.background(.red).padding(8)
+                    ZStack {
+                              Image("header")
+                                  .resizable()
+                        
+                                  .blur(radius: 6)
+                                  
+                              Text("Hello, John\nYou have 23 discounted tickets")
+                                  .fontWeight(.black)
+                                  .foregroundColor(.white)
+                          }.frame(maxWidth: .infinity, maxHeight: 96).cornerRadius(8).padding(8).shadow(color: Color.black.opacity(0.2), radius: 3, x: 1, y: 2)
+                        .shadow(color: Color.pink.opacity(0.3), radius: 2, x: 3, y: 4)
+                    
+                    
+                    
+
                     
 
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 8) {
                                 
-                                Button(action: {}, label: {HStack {
-                                    Image(systemName: "fork.knife")
-                                    Text("Fast Food").padding(8)
-                                }}).foregroundColor(.white).background(.orange).cornerRadius(24).padding(8)
+                                CategoryPill(image: "fork.knife", category: "Fast Food", active: true)
                                 
                                 
-                                Button(action: {}, label: {HStack {
-                                    Image(systemName: "wineglass")
-                                    Text("Drinks ").padding(8).fontWeight(.medium)
-                                }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
-                                
-                                Button(action: {}, label: {HStack {
-                                    HStack {
-                                        Image(systemName: "leaf")
-                                       
-                                        Text("Vegan").padding(8).fontWeight(.medium)
-                                    }
-                                }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
-                              
-                                
-                                Button(action: {}, label: {HStack {
-                                    Image(systemName: "takeoutbag.and.cup.and.straw")
-                                    Text(" Snacks").padding(8).fontWeight(.medium)
-                                }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
+                                CategoryPill(image: "wineglass", category: "Drinks")
                                 
                                 
+                                CategoryPill(image: "leaf", category: "Vegan")
                                 
-                                Button(action: {}, label: {HStack {
-                                    Image(systemName: "fish")
-                                    Text(" Sea Food").padding(8).fontWeight(.medium)
-                                }}).background(Color(hue: 1.0, saturation: 0.013, brightness: 0.981)).cornerRadius(24).padding(8)
+                                CategoryPill(image: "takeoutbag.and.cup.and.straw", category: "Snacks")
                                 
+                                
+                                CategoryPill(image: "fish", category: "Sea Food")
+                                
+                        
                             }
                         }
                     
@@ -95,20 +88,33 @@ struct BusinessView: View {
                         HStack(spacing: 8) {
                             
                           
-                            FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
+                           
+                            
+                            NavigationLink{
+                                ItemView()
+                            }label: { FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")}
                             
                         
                             
-                              FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
-                              
+                            
+                            NavigationLink{
+                                ItemView()
+                            }label: { FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")}
+                            
                           
                             
                             
-                              FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
+                            NavigationLink{
+                                ItemView()
+                            }label: { FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")}
+                            
                               
                           
                             
-                              FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")
+                            NavigationLink{
+                                ItemView()
+                            }label: { FoodDiscoverCard(category: "Fast Food", name: "Arabian beef Kebab", image: "burger", duration: "30min | 1 serving")}
+                            
                               
                           
                            
@@ -161,7 +167,7 @@ struct FoodDiscoverCard: View {
         ZStack(alignment: .leading){
             
             
-            Image("burger").resizable().scaledToFit()
+            Image(image).resizable().scaledToFit()
             
             VStack(alignment: .leading) {
                 
@@ -181,13 +187,26 @@ struct FoodDiscoverCard: View {
                     
                     
                     Text(name).font(.system(size: 32)).foregroundColor(.white).fontWeight(.heavy)
-                    
                    
                 }
                
             }.padding(10)
             
             
-        }.frame(width: UIScreen.main.bounds.width - 100).cornerRadius(10)
+        }.frame(width: UIScreen.main.bounds.width - 100).cornerRadius(10).shadow(color: Color.black.opacity(0.2), radius: 2, x: 4, y: 3)
+    }
+}
+
+struct CategoryPill: View {
+    
+    var image : String
+    var category : String
+    var active : Bool = false
+    var body: some View {
+        Button(action: {}, label: {HStack(spacing: 0) {
+            Image(systemName: image).padding(.horizontal, 8)
+            Text(category).padding(8)
+        }}).foregroundColor(active ? .white : .black).background(active ? .orange : Color(hue: 1.0, saturation: 0.006, brightness: 0.809)).cornerRadius(24).padding(8).shadow(color: Color.black.opacity(0.2), radius: 3, x: 1, y: 2)
+            .shadow(color: Color.pink.opacity(0.3), radius: 2, x: 3, y: 4)
     }
 }
