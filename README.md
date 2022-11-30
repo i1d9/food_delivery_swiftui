@@ -7,3 +7,6 @@ The project contains
 - [X] Basic Animations
 - [X] State Management
 - [X] Basic Swift UI data structures i.e Structs and Classes
+
+
+![Demo Image](demo.png)
