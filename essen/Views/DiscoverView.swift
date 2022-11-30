@@ -33,8 +33,8 @@ struct DiscoverView: View {
                     annotationItems: appState.businesses
                       ) { place in
                     MapAnnotation(coordinate: place.coordinate) {
-                              Rectangle().stroke(Color.blue)
-                              .frame(width: 20, height: 20)
+                        Image(systemName: "fork.knife").foregroundColor(.orange)
+                              .frame(width: 40, height: 40)
                           }
                       }.ignoresSafeArea()
                     .onTapGesture(perform: {
@@ -52,10 +52,26 @@ struct DiscoverView: View {
                                   widthOfHiddenCards:   widthOfHiddenCards,
                                   cardHeight:           cardHeight )
                             {
-                                Text("\(item.name)")
+                                
+                                HStack(alignment: .top) {
+                                    Image("burger").resizable().scaledToFit().cornerRadius(8)
+                                    
+                                    VStack(alignment: .leading) {
+                                        Text("\(item.name)").font(.system(size: 24, weight: Font.Weight.bold))
+                                        Text("Business Category")
+                                        
+                                        
+                                        HStack{
+                                            Image(systemName: "star.fill").foregroundColor(.orange)
+                                            Text("4.5")
+                                        }
+                                    }
+                                  
+                                    Spacer()
+                                }.padding(8)
+                                
                             }
-                            .foregroundColor( Color.red )
-                            .background( Color.black )
+                            .background( Color.white )
                             .cornerRadius( 8 )
                             .transition( AnyTransition.slide )
                             .animation(.spring())

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2626AB529372039002201FC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2626AB429372039002201FC /* LoginView.swift */; };
+		F2626AB729372EC1002201FC /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2626AB629372EC1002201FC /* RegisterView.swift */; };
 		F28261BB292F292B00476B3F /* essenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28261BA292F292B00476B3F /* essenApp.swift */; };
 		F28261BD292F292B00476B3F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28261BC292F292B00476B3F /* ContentView.swift */; };
 		F28261BF292F292D00476B3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F28261BE292F292D00476B3F /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F2626AB429372039002201FC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F2626AB629372EC1002201FC /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		F28261B7292F292B00476B3F /* essen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = essen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28261BA292F292B00476B3F /* essenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = essenApp.swift; sourceTree = "<group>"; };
 		F28261BC292F292B00476B3F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F2626AB329372025002201FC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				F2626AB429372039002201FC /* LoginView.swift */,
+				F2626AB629372EC1002201FC /* RegisterView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		F28261AE292F292B00476B3F = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +132,7 @@
 		F28261CD292F2B6900476B3F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2626AB329372025002201FC /* Auth */,
 				F28261CE292F2B7B00476B3F /* BusinessView.swift */,
 				F2826206292F73A900476B3F /* Canvas.swift */,
 				F28261D0292F2B8500476B3F /* MenuView.swift */,
@@ -218,10 +232,12 @@
 				F2826207292F73A900476B3F /* Canvas.swift in Sources */,
 				F28261FF292F682900476B3F /* MapSwipeController.swift in Sources */,
 				F28261CF292F2B7B00476B3F /* BusinessView.swift in Sources */,
+				F2626AB729372EC1002201FC /* RegisterView.swift in Sources */,
 				F2826205292F726100476B3F /* App.swift in Sources */,
 				F28261CA292F297100476B3F /* Business.swift in Sources */,
 				F28261D3292F2B9200476B3F /* ItemView.swift in Sources */,
 				F28261BD292F292B00476B3F /* ContentView.swift in Sources */,
+				F2626AB529372039002201FC /* LoginView.swift in Sources */,
 				F28261D5292F2B9E00476B3F /* CartView.swift in Sources */,
 				F28261DB292F2BD700476B3F /* OrderView.swift in Sources */,
 				F28261D7292F2BAF00476B3F /* HistoryView.swift in Sources */,

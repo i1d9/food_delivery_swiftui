@@ -29,11 +29,7 @@ struct ItemView: View {
             
             VStack(){
                
-              
-                
-            
                 Image("burger").resizable()
-                
                 VStack(alignment: .leading) {
                     HStack {
                         VStack(alignment: .leading, spacing: 10) {
